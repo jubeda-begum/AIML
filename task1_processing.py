@@ -1,20 +1,3 @@
-#!/usr/bin/env python3
-"""
-task1_processing.py
-
-Complete pipeline for Task-1:
-- Extraction (read CSV)
-- Text processing (cleaning / normalization)
-- Text analysis (classify test results, flag lab values if reference ranges are provided)
-- Output cleaned CSV / JSON and compact analysis JSON
-
-Usage:
-    python task1_processing.py \
-        --input /mnt/data/healthcare_dataset.csv \
-        --outdir /mnt/data/task1_outputs \
-        --ref-ranges ref_ranges.json   # optional
-"""
-
 import argparse
 import json
 import re
@@ -24,10 +7,7 @@ from typing import Dict, Tuple, Optional
 
 import pandas as pd
 from dateutil import parser as dateparser
-
-# ------------------------------
 # Helpers: normalization & classification
-# ------------------------------
 def proper_name(name: Optional[str]) -> Optional[str]:
     if pd.isna(name) or name is None:
         return None
@@ -128,10 +108,7 @@ def flag_lab_value(value: float, ref_range: Dict[str, float]) -> Optional[str]:
         return 'Normal'
     # if partial info, fallback:
     return None
-
-# ------------------------------
 # Main processing function
-# ------------------------------
 def process_dataframe(df: pd.DataFrame, ref_ranges: Dict[str, Dict[str, float]]=None) -> pd.DataFrame:
     """
     Clean the dataframe, add standardized columns, and produce analysis columns.
@@ -198,10 +175,7 @@ def process_dataframe(df: pd.DataFrame, ref_ranges: Dict[str, Dict[str, float]]=
                 )
 
     return clean
-
-# ------------------------------
 # IO & CLI
-# ------------------------------
 def load_ref_ranges(path: Optional[Path]) -> Dict[str, Dict[str, float]]:
     if path is None:
         return {}
@@ -257,3 +231,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
