@@ -1,17 +1,3 @@
-#!/usr/bin/env python3
-"""
-task2_extract_parameters.py
-
-Task-2: Extract key blood/lab parameters and numeric values from a cleaned CSV.
-
-Usage:
-    python task2_extract_parameters.py --input "C:/path/to/cleaned_dataset.csv" --outdir "C:/path/to/task2_outputs"
-
-Outputs:
- - extracted_parameters_long.csv
- - extracted_parameters_wide.csv
- - extracted_parameters.json
-"""
 import argparse
 import re
 from pathlib import Path
@@ -221,3 +207,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
